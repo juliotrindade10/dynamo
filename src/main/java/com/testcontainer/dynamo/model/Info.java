@@ -1,11 +1,13 @@
 package com.testcontainer.dynamo.model;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBDocument;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverted;
+import com.testcontainer.dynamo.service.LargeNumberConverter;
 import com.testcontainer.dynamo.service.ReleaseDateConverter;
 
 import lombok.Data;
@@ -16,8 +18,13 @@ public class Info {
 
 	private List<String> directors;
 	@DynamoDBAttribute(attributeName = "release_date")
+
 	@DynamoDBTypeConverted(converter = ReleaseDateConverter.class)
 	private LocalDate releaseDate;
+
+	@DynamoDBTypeConverted(converter = LargeNumberConverter.class)
+	private BigDecimal views;
+
 	private Double rating;	
 	private List<String> genres;
 	@DynamoDBAttribute(attributeName = "image_url")

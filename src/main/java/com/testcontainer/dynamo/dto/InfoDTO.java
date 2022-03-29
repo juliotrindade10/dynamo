@@ -1,14 +1,14 @@
 package com.testcontainer.dynamo.dto;
 
-import java.time.LocalDate;
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
-
 import lombok.Data;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.List;
 
 @Data
 public class InfoDTO {
@@ -18,7 +18,8 @@ public class InfoDTO {
 	@JsonFormat(pattern="yyyy-MM-dd")
 	@JsonDeserialize(using = LocalDateDeserializer.class)
 	private LocalDate releaseDate;
-	private Double rating;	
+	private BigDecimal views;
+	private Double rating;
 	private List<String> genres;
 	@JsonProperty(value = "image_url")
 	private String imageUrl;
